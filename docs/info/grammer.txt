@@ -1,0 +1,224 @@
+// Tokens:
+
+Skip ::=
+		" "
+
+String ::=
+		"\"~[\"]*\"" // String start with ", accept anything but a " inside the string and end it when another " is found
+
+Comments ::=
+		";~[\n]*" //Comments start with a ';', and last until the end of the line, without consuming the \n caracter
+
+SEP ::=
+		"\n"
+
+Digit ::=
+		["0"-"9"]*
+
+Integer ::=
+		Digit+
+
+Number ::=
+		Integer
+		| "-" Integer // Include negative numbers
+		| "0x" ["0"-"9", "A"-"F"]* // Accept hexadecimal numbers
+		| ("-")? Integer "." Integer
+
+Letter ::=
+		["a"-"z", "A"-"Z"]
+
+Word ::=
+		(Letter | "_" | "$")
+		(Letter | "_" | Digit)*
+
+Class_name ::= 
+		Word ("/" Word)*
+
+
+// Rules:
+
+start := 
+		[ source_spec ]
+		class_spec
+		super_spec
+		[ implements ]
+		[ fields ]
+		[ methods ]
+
+source_spec :=
+		// Word is file's name
+		DSOURCE Word SEP
+
+class_spec :=
+		DCLASS access Class_name SEP
+		| DINTERFACE access Class_name 
+
+access :=
+		ABSTRACT
+		| FINAL
+		| INTERFACE
+		| NATIVE
+		| PRIVATE
+		| PROTECTED
+		| PUBLIC
+		| STATIC
+		| SYNCHRONIZED
+		| TRANSIENT
+		| VOLATILE
+
+super_spec :=
+		DSUPER Class_name SEP
+
+// Implements related rules
+implements :=
+		(implements_spec)+
+
+implements_spec :=
+		DIMPLEMENTS Class_name SEP
+
+// Fields related rules
+fields :=
+		(fields_spec)+
+
+fields_spec :=
+		// First word is field's name
+		// Secound word is field's type
+		// Other value representes initiated value
+		DFIELDS access Word Word [ EQUALS (String|Number)
+
+// Method related rules
+methods :=
+		(method_spec)+
+
+method_spec :=
+		defmethod
+		(statments)*
+		endmethod
+
+defmethod :=
+		// Word is method's name
+		DMETHOD access Word SEP
+
+endmethod :=
+		DEND METHOD SEP
+
+statments :=
+		statment (statment)*
+
+statment :=
+		[ stmt ] SEP
+
+stmt :=
+		instruction
+		| directive
+		| error
+		| label
+
+label :=
+		// Word is label's name
+		Word COLON
+
+directive :=
+		DVAR var_expr
+		| DLIMIT limit_expr
+		| DLINE line_expr
+		| DTHROWS throws_expr
+		| DCATCH catch_expr
+		| DSET set_expr
+
+var_expr :=
+		// First integer is variable's index
+		// First word is assigned name
+		// Secound word is variable's type
+		// Third word is stating label
+		// Forth word is ending label
+		Integer IS Word	Word
+		[ FROM Word TO Word ]
+
+limit_expr :=
+		// Amount of local variables and max stack size
+		LOCALS Integer
+		| STACK Integer
+
+line_expr :=
+		// Line in source code
+		Integer
+
+throws_expr :=
+		// Type of thrown exception
+		Class_name
+
+catch_expr :=
+		// Type of caught exception
+		// Label to starting area where the exception can be thrown
+		// Label to ending area where the exception can be thrown
+		// Label to execution area incase the exception is thrown
+		Class_name FROM Word TO Word USING Word
+
+//TODO: research this directive as user guide doesn't provide information
+//Parser rules displays the following comment: .set <var> = <var>
+set_expr :=
+		// Name of var
+		Word
+		(Number | Word | String)
+
+instruction :=
+		simple_instruction
+		| complex_instruction
+
+simple_instruction :=
+		Insn
+		| Insn [ Integer [ Integer ] ]
+		| Insn Num
+		| Insn Word [ Integer | Word ]
+		| Insn String
+
+complex_instruction :=
+		LOOKUPSWITCH lookup
+		| TABLESWITCH table
+
+// Regular switch, no troubles here
+lookup :=
+		lookup_args
+		lookup_list 
+		lookup_default
+
+lookup_args :=
+		SEP // For some reason (not mine) this requires a new rule :)
+
+lookup_list :=
+		lookup_list lookup_entry
+		| lookup_entry
+
+lookup_entry :=
+		// Case value
+		// Label to jump to
+		Integer COLON Word SEP
+
+lookup_default :=
+		// Label to jump to
+		DEFAULT COLON Word
+
+//TODO: research tables. They seem similar to the above switch, but with ranges?
+table :=
+		table_args
+		table_list
+		table_default
+
+table_args :=
+		// low value
+		// High value
+		Integer [ Integer ]
+
+table_list :=
+		table_list table_entry
+		| table_entry
+
+table_entry :=
+		// Label
+		Word SEP
+
+table_default :=
+		// Label
+		DEFAULT COLON Word
+
