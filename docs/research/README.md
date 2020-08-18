@@ -7,3 +7,4 @@ Most, if not all, information was gathered by analysing the source code.
  - [main project documentation](http://jasmin.sourceforge.net/)
  - [source code](https://sourceforge.net/projects/jasmin/)
  - [source code hosted by github](https://github.com/davidar/jasmin)
+ - [external source](http://www.cs.sjsu.edu/faculty/pearce/modules/lectures/co/jvm/jasmin/)
