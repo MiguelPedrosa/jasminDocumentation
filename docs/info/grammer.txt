@@ -82,7 +82,7 @@ fields :=
 
 fields_spec :=
 		// First word is field's name
-		// Secound word is field's type
+		// Second word is field's type
 		// Other value representes initiated value
 		DFIELDS access Word Word [ EQUALS (String|Number)
 
@@ -129,7 +129,7 @@ directive :=
 var_expr :=
 		// First integer is variable's index
 		// First word is assigned name
-		// Secound word is variable's type
+		// Second word is variable's type
 		// Third word is stating label
 		// Forth word is ending label
 		Integer IS Word	Word
