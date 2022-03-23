@@ -136,59 +136,59 @@ I do not know the difference between `goto` and `goto_w`. The instructions `jsr`
 
 ### Instructions that haven't been documented
 
-aconst_null
-anewarray
-areturn
-arraylength
-athrow
-breakpoint
-checkcast
-dcmpg
-dcmpl
-dconst_0
-dconst_1
-dreturn
-fcmpg
-fcmpl
-fconst_0
-fconst_1
-fconst_2
-freturn
-getfield
-getstatic
-iconst_0
-iconst_1
-iconst_2
-iconst_3
-iconst_4
-iconst_5
-iconst_m1
-iinc
-instanceof
-invokeinterface
-invokenonvirtual
-invokespecial // added this synonym
-invokestatic
-invokevirtual
-ireturn
-lcmp
-lconst_0
-lconst_1
-ldc
-ldc_w
-ldc2_w
-lookupswitch
-lreturn
-monitorenter
-monitorexit
-multianewarray
-new
-newarray
-nop
-putfield
-putstatic
-ret
-ret_w // synonym for ret
-return
-tableswitch
-wide
+ - aconst_null
+ - anewarray
+ - areturn
+ - arraylength
+ - athrow
+ - breakpoint
+ - checkcast
+ - dcmpg
+ - dcmpl
+ - dconst_0
+ - dconst_1
+ - dreturn
+ - fcmpg
+ - fcmpl
+ - fconst_0
+ - fconst_1
+ - fconst_2
+ - freturn
+ - getfield
+ - getstatic
+ - iconst_0
+ - iconst_1
+ - iconst_2
+ - iconst_3
+ - iconst_4
+ - iconst_5
+ - iconst_m1
+ - iinc
+ - instanceof
+ - invokeinterface
+ - invokenonvirtual
+ - invokespecial // added this synonym
+ - invokestatic
+ - invokevirtual
+ - ireturn
+ - lcmp
+ - lconst_0
+ - lconst_1
+ - ldc
+ - ldc_w
+ - ldc2_w
+ - lookupswitch
+ - lreturn
+ - monitorenter
+ - monitorexit
+ - multianewarray
+ - new
+ - newarray
+ - nop
+ - putfield
+ - putstatic
+ - ret
+ - ret_w // synonym for ret
+ - return
+ - tableswitch
+ - wide
