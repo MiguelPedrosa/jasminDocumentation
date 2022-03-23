@@ -1,4 +1,4 @@
-# jasminFW
+# Jasmin Documentation
 
 
 ## What the project does
