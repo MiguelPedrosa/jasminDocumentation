@@ -1,4 +1,4 @@
-Welcome to the jasminFW wiki!
+Welcome to the jasmin wiki!
 
 Pages written so far:
  * [Jasmin Types](./Types)
