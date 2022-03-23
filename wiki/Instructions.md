@@ -6,14 +6,14 @@
  5. [Conversions](#Conversions)
  6. [Conditional and unconditional branches](#Conditional-and-unconditional-branches)
 
-
-	5. Comparisions (lcmp, etc.)
-	6. Creation and manipulation of objects and arrays (new, newarray, etc.)
-	7. Access fields of an object (putfield, getfield, etc.)
-	8. Method calls (invokeinterface, invokespecial, etc.)
-	9. Constants (iconst_1, ldc “Hello”, etc.)
-	10. Switch (lookupswitch e tableswitch)
-	11. Definition of synchronous regions (monitorenter e monitorexit)
+#### Sections that haven't been processed 
+ 6. Comparisions (lcmp, etc.)
+ 7. Creation and manipulation of objects and arrays (new, newarray, etc.)
+ 8. Access fields of an object (putfield, getfield, etc.)
+ 9. Method calls (invokeinterface, invokespecial, etc.)
+ 10. Constants (iconst_1, ldc “Hello”, etc.)
+ 11. Switch (lookupswitch e tableswitch)
+ 12. Definition of synchronous regions (monitorenter e monitorexit)
 
 
 ## Store Instructions
@@ -134,7 +134,7 @@ These instructions use the topmost value in the stack againt the condition and, 
 I do not know the difference between `goto` and `goto_w`. The instructions `jsr` and `jsr_w` are marked in the source code as synonym.
 
 
-
+### Instructions that haven't been documented
 
 aconst_null
 anewarray
